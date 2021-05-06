@@ -1,0 +1,9 @@
+.header {
+  background: url("https://picsum.photos/id/1002/1360/768") no-repeat center;
+  background-size: cover;
+}
+
+.header h1,
+.header h3 {
+  color: white;
+}
