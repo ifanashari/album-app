@@ -13,14 +13,15 @@ interface AlbumItemProps {
 const AlbumItem: React.SFC<AlbumItemProps> = ({ album, user }) => {
   return (
     <div className="album-item mb-3">
-      <img src="https://picsum.photos/300/300" alt="album" />
+      <img src={`https://picsum.photos/id/${album.id}/300/300`} alt="album" />
       <div className="album-content p-3">
         <Link to={`/albums/${album.id}`}>
           <h3>
             {album.id}:{" "}
-            {album.title.length > 10
+            {/* {album.title.length > 10
               ? `${album.title.substring(0, 10)} ...`
-              : album.title}
+              : album.title} */}
+            {album.title}
           </h3>
         </Link>
         <div className="album-user">

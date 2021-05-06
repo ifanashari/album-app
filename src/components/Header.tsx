@@ -1,38 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import "../assets/css/Header.css";
 
 interface HeaderProps {
-  handleFilter: (keyword: string) => void;
+  title: string;
+  subTitle?: string;
 }
 
-const Header: React.SFC<HeaderProps> = ({ handleFilter }) => {
-  const [keyword, setKeyword] = useState("");
-
-  function handleSubmit(e: any) {
-    e.preventDefault();
-    handleFilter(keyword);
-  }
-
+const Header: React.SFC<HeaderProps> = ({ title, subTitle }) => {
   return (
-    <div className="header d-flex w-100 py-5">
-      <div className="m-auto text-center">
-        <h1>Welcome to album-app</h1>
-        <h3>Filter album</h3>
-
-        <form className="d-flex" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            className="form-control"
-            value={keyword}
-            placeholder="username | album name"
-            onChange={e => setKeyword(e.target.value)}
-          />
-          <button type="submit" className="btn btn-success">
-            find
-          </button>
-        </form>
+    <React.Fragment>
+      <div className="header w-100 py-5 mb-3">
+        <div className="m-auto text-center">
+          <h1>{title}</h1>
+          <h3 className="mb-0">{subTitle}</h3>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

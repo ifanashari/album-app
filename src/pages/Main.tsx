@@ -1,17 +1,19 @@
 import React from "react";
-import Header from "../components/Header";
-import AlbumItem from "../components/AlbumItem";
 import AlbumInterface from "../interfaces/AlbumInterface";
 import UserInterface from "../interfaces/UserInterface";
 import axios from "axios";
 
+import Header from "../components/Header";
+import FormFilter from "../components/FormFilter";
+import AlbumItem from "../components/AlbumItem";
+
 class Main extends React.Component<
   {},
-  { albums: AlbumInterface[]; users: any }
+  { albums: AlbumInterface[]; users: any; listAlbums: AlbumInterface[] }
 > {
   constructor(props: {}) {
     super(props);
-    this.state = { albums: [], users: [] };
+    this.state = { albums: [], users: [], listAlbums: [] };
   }
 
   async componentDidMount() {
@@ -24,13 +26,12 @@ class Main extends React.Component<
         "https://jsonplaceholder.typicode.com/users"
       );
 
-      console.log(responseAlbums);
-
       this.setState(prevState => {
         return {
           ...prevState,
           albums: responseAlbums.data,
-          users: responseUsers.data
+          users: responseUsers.data,
+          listAlbums: responseAlbums.data
         };
       });
     } catch (err) {
@@ -38,8 +39,36 @@ class Main extends React.Component<
     }
   }
 
-  handleFilter = (keyword: String) => {
-    console.log(keyword);
+  handleFilter = (name: string, albumName: string) => {
+    if (name || albumName) {
+      const filteredUsers = this.state.users.filter((data: UserInterface) =>
+        data.name.toLowerCase().includes(name.toLowerCase())
+      );
+
+      const filteredUsersId = filteredUsers.map(
+        (data: UserInterface) => data.id
+      );
+
+      const filteredAlbums = this.state.albums.filter(
+        (data: AlbumInterface) =>
+          data.title.toLowerCase().includes(albumName.toLowerCase()) ||
+          filteredUsersId.includes(data.userId)
+      );
+
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          listAlbums: filteredAlbums
+        };
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          listAlbums: prevState.albums
+        };
+      });
+    }
   };
 
   findSpecificUser = (id: Number) => {
@@ -49,15 +78,16 @@ class Main extends React.Component<
   render() {
     return (
       <div>
-        <Header handleFilter={this.handleFilter} />
-        <div className="container mt-3">
+        <Header title="Welcome to album-app" subTitle="Filter album" />
+        <FormFilter handleFilter={this.handleFilter} />
+        <div className="container">
           <div className="row">
-            {this.state.albums.map((item: AlbumInterface) => {
+            {this.state.listAlbums.map((item: AlbumInterface) => {
               return (
                 <div className="col-md-4 mb-3" key={item.id}>
                   <AlbumItem
                     album={item}
-                    user={this.findSpecificUser(item.id)}
+                    user={this.findSpecificUser(item.userId)}
                   />
                 </div>
               );
