@@ -7,7 +7,6 @@ interface HeaderProps {
 }
 
 const Header: React.SFC<HeaderProps> = ({ title, subTitle }) => {
-  console.log(subTitle);
   return (
     <React.Fragment>
       <div className="header w-100 py-5 mb-3">

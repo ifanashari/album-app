@@ -2,9 +2,6 @@ import React from "react";
 import UserInterface from "../interfaces/UserInterface";
 
 const UserSection: React.SFC<{ user?: UserInterface | null }> = ({ user }) => {
-  function handleVisitCompany(link: string) {
-    window.location.href = link;
-  }
   return (
     <div className="container mt-5">
       {user && (

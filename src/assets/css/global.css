@@ -1,0 +1,14 @@
+.comment {
+  border-radius: 5px;
+  border: solid 1px lightgray;
+}
+
+.navigation {
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+}
+
+.navigation a {
+  color: white;
+}

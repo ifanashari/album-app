@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import "../../assets/css/detail-user.css";
+import "../assets/css/detail-user.css";
 
-import Header from "../../components/Header";
-import AlbumInterface from "../../interfaces/AlbumInterface";
-import UserInterface from "../../interfaces/UserInterface";
-import UserSection from "../../components/UserSection";
-import AlbumItem from "../../components/AlbumItem";
+import Header from "../components/Header";
+import AlbumInterface from "../interfaces/AlbumInterface";
+import UserInterface from "../interfaces/UserInterface";
+import UserSection from "../components/UserSection";
+import AlbumItem from "../components/AlbumItem";
 
 class Users extends React.Component<
   any,
