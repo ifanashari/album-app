@@ -27,3 +27,10 @@
 .album-content a:hover {
   color: white;
 }
+
+.album-profil {
+  width: 20px;
+  height: 20px;
+  background: lightgray;
+  border-radius: 100px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/Header.css";
+import "../assets/css/header.css";
 
 interface HeaderProps {
   title: string;
@@ -7,6 +7,7 @@ interface HeaderProps {
 }
 
 const Header: React.SFC<HeaderProps> = ({ title, subTitle }) => {
+  console.log(subTitle);
   return (
     <React.Fragment>
       <div className="header w-100 py-5 mb-3">

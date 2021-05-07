@@ -84,7 +84,7 @@ class Main extends React.Component<
           <div className="row">
             {this.state.listAlbums.map((item: AlbumInterface) => {
               return (
-                <div className="col-md-4 mb-3" key={item.id}>
+                <div className="col-md-4 mb-4" key={item.id}>
                   <AlbumItem
                     album={item}
                     user={this.findSpecificUser(item.userId)}
